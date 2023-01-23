@@ -8,10 +8,10 @@ namespace SP23.P01.Web.Data
             var context = services.GetRequiredService<DataContext>();
             context.Database.Migrate();
 
-            AddProducts(context);
+            AddTrainStations(context);
         }
 
-        private static void AddProducts(DataContext context) {
+        private static void AddTrainStations(DataContext context) {
             var products = context.Set<TrainStation>();
             if (products.Any()) {
                 return;
