@@ -72,7 +72,7 @@ namespace SP23.P01.Web.Controllers
 
             var trainStation = trainStations.FirstOrDefault(x=> x.Id == id);
             if(trainStation == null) {
-                return BadRequest();
+                return NotFound();
             }
 
             trainStation.Name = dto.Name;
@@ -86,6 +86,19 @@ namespace SP23.P01.Web.Controllers
             return Ok(dto);
         }
 
+        [HttpDelete]
+        [Route("/api/stations/{id}")]
+        public ActionResult<TrainStationDto> deleteTrainStation(int id) {
+            var station = trainStations.FirstOrDefault(x=> x.Id == id);
+            if(station == null) {
+                return NotFound();
+            }
+
+            trainStations.Remove(station);
+            dataContext.SaveChanges();
+
+            return Ok();
+        }
 
         public static IQueryable<TrainStationDto> GetTrainStationDtos(IQueryable<TrainStation> trainStations) {
             return trainStations
