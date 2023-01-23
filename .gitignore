@@ -261,3 +261,7 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+SP23.P01.Web/Properties/launchSettings.json
+SP23.P01.Web/SP23.P01.Web.csproj
+SP23.P01.Web/appsettings.json
+SP23.P01.Web/appsettings.json
