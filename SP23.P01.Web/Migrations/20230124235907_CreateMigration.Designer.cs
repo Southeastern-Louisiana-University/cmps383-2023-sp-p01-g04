@@ -11,8 +11,8 @@ using SP23.P01.Web.Data;
 namespace SP23.P01.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230122233131_Initial")]
-    partial class Initial
+    [Migration("20230124235907_CreateMigration")]
+    partial class CreateMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,25 @@ namespace SP23.P01.Web.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("SP23.P01.Web.Entities.TrainStation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TrainStations");
+                });
 #pragma warning restore 612, 618
         }
     }
