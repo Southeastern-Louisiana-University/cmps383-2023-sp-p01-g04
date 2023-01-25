@@ -1,10 +1,11 @@
 using Microsoft.EntityFrameworkCore;
+using SP23.P01.Web.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddDbContext<SP23.P01.Web.Data.DataContext>(options =>
+builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DataContext")));
 
 builder.Services.AddControllers();
@@ -19,6 +20,12 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    SeedData.Initialize(services);
 }
 
 app.UseHttpsRedirection();
