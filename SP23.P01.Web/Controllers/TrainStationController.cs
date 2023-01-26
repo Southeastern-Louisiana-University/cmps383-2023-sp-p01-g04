@@ -42,9 +42,6 @@ namespace SP23.P01.Web.Controllers
                 return BadRequest();
             }
 
-            if(dto.Name.Length > 120) {
-                return BadRequest();
-            }
 
             var newTrainStation = new TrainStation();
             newTrainStation.Name = dto.Name;
@@ -66,9 +63,6 @@ namespace SP23.P01.Web.Controllers
                 return BadRequest();
             }
 
-            if (dto.Name.Length > 120) {
-                return BadRequest();
-            }
 
             var trainStation = trainStations.FirstOrDefault(x=> x.Id == id);
             if(trainStation == null) {
@@ -110,7 +104,7 @@ namespace SP23.P01.Web.Controllers
         }
 
         private static bool IsInvalid(TrainStationDto dto) {
-            return string.IsNullOrWhiteSpace(dto.Name) || string.IsNullOrWhiteSpace(dto.Address);
+            return string.IsNullOrWhiteSpace(dto.Name) || string.IsNullOrWhiteSpace(dto.Address) || dto.Name.Length>120;
         }
     }
 }

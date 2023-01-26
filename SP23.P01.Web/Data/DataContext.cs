@@ -4,17 +4,15 @@ using SP23.P01.Web.Features;
 public class DataContext : DbContext {
 
     public DataContext(DbContextOptions<DataContext> options) : base(options) {
-    }
 
-    public DataContext() {
     }
 
     public DbSet<TrainStation> trainStations { get; set; }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder) {
+    protected override void OnModelCreating(ModelBuilder modelBuilder ) {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(DataContext).Assembly);
+        modelBuilder.ApplyConfiguration(new TrainStationConfiguration());
     }
 
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder) {
