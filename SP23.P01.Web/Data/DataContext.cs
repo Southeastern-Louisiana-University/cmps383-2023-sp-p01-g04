@@ -6,6 +6,11 @@ namespace SP23.P01.Web.Data
 {
     public class DataContext : DbContext
     {
+        //"super"
+        //dbcontextoptions and pass it to bass class
+        //db context...because you want it to say use this specfic connection string.
+        //our class has to konw
+        //only constructed using options, nothing else, no other constructors?
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
 
@@ -17,6 +22,9 @@ namespace SP23.P01.Web.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            //this is like adding <Trainstation, but all of them
+            //finds the class and puts it in. gets the type and searches and finds all iEntity types
+            // public class trainstationconfiuration: iEntityTypeConfiguration
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(DataContext).Assembly);
         }
 

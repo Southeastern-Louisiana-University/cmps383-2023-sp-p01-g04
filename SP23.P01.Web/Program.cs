@@ -4,6 +4,7 @@ using SP23.P01.Web.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+//says you're gonna have it
 
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DataContext")));
@@ -24,6 +25,9 @@ if (app.Environment.IsDevelopment())
 
 using (var scope = app.Services.CreateScope())
 {
+    //var db = scope.ServiceProvider.GetRequiredService<DataContext>();
+    //db.Database.Migrate();
+
     var services = scope.ServiceProvider;
     SeedData.Initialize(services);
 }

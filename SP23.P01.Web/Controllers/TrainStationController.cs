@@ -10,7 +10,7 @@ namespace SP23.P01.Web.Controllers
 {
 
     [ApiController]
-    [Route("/api/trainstations")]
+    [Route("/api/stations")]
     public class TrainStationController: ControllerBase
 	{
 
@@ -27,6 +27,8 @@ namespace SP23.P01.Web.Controllers
 		public IQueryable<TrainStationDto> GetAll()
 		{
 			return GetTrainStationDtos(trainStations);
+            //var trains = dataContext.Set<TrainStation>();
+            //return Ok(trainStations.Select)
 		}
 
         private static IQueryable<TrainStationDto> GetTrainStationDtos(IQueryable<TrainStation> trainStations)
